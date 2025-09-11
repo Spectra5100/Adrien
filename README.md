@@ -144,7 +144,6 @@ fetch('compteur.php')
   .then(data => {
     document.getElementById('visites').textContent = data;
   });
-</script>
     // --- heure et date ---
     function updateDateTime(){
       const now = new Date();
