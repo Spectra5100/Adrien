@@ -91,17 +91,64 @@
       <span>A</span><span>d</span><span>r</span><span>i</span><span>e</span><span>n</span>
     </div>
 
-    <img id="avatar" class="avatar" src="" alt="avatar"/>
-    <div id="username" class="username">chargement...</div>
-    <div id="status" class="status"> </div>
-    <div class="subtitle">débutant dans le futur du numérique</div>
-
-    <div class="actions">
-      <label for="file-input" class="btn" title="ajouter des musiques">ajouter musique</label>
-      <input id="file-input" type="file" accept="audio/*" multiple />
-      <button id="copy-discord" class="btn">copier discord</button>
-    </div>
+     <!-- profil discord -->
+  <div class="center">
+    <img id="avatar" class="avatar" src="" alt="avatar discord">
+    <div id="username" class="username">Adrien</div>
+    <div id="status" class="status"></div>
+    <div class="subtitle">Ne jamais abandonner.</div>
   </div>
+
+  <!-- lecteur audio -->
+<div class="player">
+    <audio id="audio" controls autoplay>
+      <source src="Vertigo.mp3" type="audio/mpeg">
+    </audio>
+    <div class="next-track">Prochaine musique : <span id="next"></span></div>
+  </div>
+
+ <!-- Bouton muet flottant -->
+<button id="mute-btn">🔊</button>
+
+<style>
+#mute-btn {
+    position: fixed;
+    bottom: 30px;   /* distance par rapport au bas */
+    left: 30px;     /* distance par rapport à gauche */
+    background: linear-gradient(135deg, #ff6ec4, #7873f5);
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    padding: 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    animation: float 2s ease-in-out infinite;
+    z-index: 9999;
+    transition: transform 0.2s;
+}
+
+#mute-btn:hover {
+    transform: scale(1.2);
+}
+
+/* Animation flottante */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+/* Optionnel : bouton plus petit sur mobile */
+@media (max-width: 768px) {
+    #mute-btn {
+        font-size: 20px;
+        padding: 12px;
+        bottom: 20px;
+        left: 20px;
+    }
+}
+</style>
+
 
   <!-- player -->
   <div class="player-wrap" aria-live="polite">
