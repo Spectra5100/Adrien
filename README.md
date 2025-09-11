@@ -1,7 +1,9 @@
+<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adrien</title>
   <style>
     * {margin:0;padding:0;box-sizing:border-box;}
     body,html {height:100%;width:100%;overflow:hidden;font-family:Arial, sans-serif;color:white;}
@@ -17,8 +19,8 @@
     .subtitle {margin-top:10px;font-size:1.1em;color:#ccc;}
 
     /* barre réseaux sociaux */
-    .socials {position:absolute;top:20px;right:20px;display:flex;gap:15px;}
-    .socials img {width:35px;height:35px;cursor:pointer;transition:transform .3s;}
+    .socials {position:absolute;top:50%;right:20px;display:flex;flex-direction:column;gap:15px;transform:translateY(-50%);}
+    .socials img {width:40px;height:40px;cursor:pointer;transition:transform .3s;}
     .socials img:hover {transform:scale(1.2);}
 
     /* lecteur audio */
@@ -62,7 +64,7 @@
   <!-- lecteur audio -->
   <div class="player">
     <audio id="audio" controls autoplay>
-      <source src="Vertigo.mp3" type="audio/mpeg">
+      <source src="musique1.mp3" type="audio/mpeg">
     </audio>
     <div class="next-track">Prochaine musique : <span id="next"></span></div>
   </div>
@@ -93,10 +95,17 @@
 
     // --- playlist auto ---
     const audio = document.getElementById('audio');
-    const playlist = ["Vertigo.mp3","LUA.mp3","Tacata.mp3"];
+    const playlist = ["musique1.mp3","musique2.mp3","musique3.mp3"];
     let current = 0;
     const nextSpan = document.getElementById('next');
     nextSpan.textContent = playlist[1] || "-";
+
+    window.addEventListener('load', () => {
+      audio.src = playlist[current];
+      audio.play().catch(() => {
+        console.log("Autoplay bloqué, nécessite une interaction");
+      });
+    });
 
     audio.addEventListener('ended',()=>{
       current=(current+1)%playlist.length;
