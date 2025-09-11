@@ -1,4 +1,3 @@
-
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
@@ -8,19 +7,11 @@
     * {margin:0;padding:0;box-sizing:border-box;}
     body,html {height:100%;width:100%;overflow:hidden;font-family:Arial, sans-serif;color:white;}
     canvas {position:absolute;top:0;left:0;width:100%;height:100%;z-index:-1;background:black;}
-    
+
     /* zones principales */
-   .center {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  background: rgba(0,0,0,0.5);
-  padding: 20px;
-  border-radius: 15px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.5);
-}
+    .center {position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;background:rgba(0,0,0,0.5);padding:20px;border-radius:15px;box-shadow:0 0 15px rgba(0,0,0,0.5);}
+    .avatar {width:120px;height:120px;border-radius:50%;border:3px solid #7289da;transition:transform .3s;}
+    .avatar:hover {transform:scale(1.1);}
 
     .username {font-size:2em;font-weight:bold;margin-top:15px;}
     .status {margin-top:5px;font-size:1em;opacity:0.8;}
@@ -94,15 +85,12 @@ intro.addEventListener('click', () => {
 
   <!-- lecteur audio -->
 <div class="player">
-    <audio id="audio" controls autoplay>
-      <source src="Vertigo.mp3" type="audio/mpeg">
-    </audio>
+    <audio id="audio" controls autoplay></audio>
     <div class="next-track">Prochaine musique : <span id="next"></span></div>
+    <div style="margin-top:10px; text-align:center;">
+      <input type="file" id="fileInput" accept="audio/*" multiple>
+    </div>
   </div>
-  <div style="margin-top:10px; text-align:center;">
-  <input type="file" id="fileInput" accept="audio/*" multiple>
-</div>
-
 
  <!-- Bouton muet flottant -->
 <button id="mute-btn">🔊</button>
@@ -129,13 +117,11 @@ intro.addEventListener('click', () => {
     transform: scale(1.2);
 }
 
-/* Animation flottante */
 @keyframes float {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-8px); }
 }
 
-/* Optionnel : bouton plus petit sur mobile */
 @media (max-width: 768px) {
     #mute-btn {
         font-size: 20px;
@@ -149,7 +135,6 @@ intro.addEventListener('click', () => {
 <script>
 const muteBtn = document.getElementById("mute-btn");
 const audioElements = document.querySelectorAll("audio"); 
-
 let muted = false;
 
 muteBtn.addEventListener("click", () => {
@@ -164,15 +149,13 @@ muteBtn.addEventListener("click", () => {
   <div class="footer-right" id="datetime"></div>
 
   <script>
-    // --- copier pseudo ---
     function copyToClipboard(text){navigator.clipboard.writeText(text);alert(text + ' copié !');}
 
-    // --- compteur visiteurs ---
     let visits = localStorage.getItem('visits') || 0;
     visits++;
     localStorage.setItem('visits', visits);
     document.getElementById('counter').textContent = visits;
-    // --- heure et date ---
+
     function updateDateTime(){
       const now = new Date();
       const options = {hour:'2-digit',minute:'2-digit',second:'2-digit'};
@@ -182,40 +165,37 @@ muteBtn.addEventListener("click", () => {
     }
     setInterval(updateDateTime,1000);updateDateTime();
 
-    
-    // --- playlist auto ---
     const audio = document.getElementById('audio');
-const fileInput = document.getElementById('fileInput');
-let playlist = ["Vertigo.mp3","LUA.mp3","Tacata.mp3"];
-let current = 0;
-const nextSpan = document.getElementById('next');
-nextSpan.textContent = playlist[1] || "-";
+    const fileInput = document.getElementById('fileInput');
+    let playlist = ["Vertigo.mp3","LUA.mp3","Tacata.mp3"];
+    let current = 0;
+    const nextSpan = document.getElementById('next');
+    nextSpan.textContent = playlist[1] || "-";
 
-window.addEventListener('load', () => {
-  audio.src = playlist[current];
-  audio.play().catch(() => {
-    console.log("Autoplay bloqué, nécessite une interaction");
-  });
-});
+    window.addEventListener('load', () => {
+      audio.src = playlist[current];
+      audio.play().catch(() => {
+        console.log("Autoplay bloqué, nécessite une interaction");
+      });
+    });
 
-audio.addEventListener('ended',()=>{
-  current=(current+1)%playlist.length;
-  audio.src=playlist[current];
-  audio.play();
-  const nextIndex = (current+1)%playlist.length;
-  nextSpan.textContent = playlist[nextIndex];
-});
+    audio.addEventListener('ended',()=>{
+      current=(current+1)%playlist.length;
+      audio.src=playlist[current];
+      audio.play();
+      const nextIndex = (current+1)%playlist.length;
+      nextSpan.textContent = playlist[nextIndex];
+    });
 
-fileInput.addEventListener('change', (e) => {
-  playlist = Array.from(e.target.files).map(file => URL.createObjectURL(file));
-  current = 0;
-  audio.src = playlist[current];
-  audio.play();
-  const nextIndex = (current+1)%playlist.length;
-  nextSpan.textContent = playlist[nextIndex];
-});
+    fileInput.addEventListener('change', (e) => {
+      playlist = Array.from(e.target.files).map(file => URL.createObjectURL(file));
+      current = 0;
+      audio.src = playlist[current];
+      audio.play();
+      const nextIndex = (current+1)%playlist.length;
+      nextSpan.textContent = playlist[nextIndex];
+    });
 
-    // --- profil discord via Lanyard ---
     const discordId = "714900482933522447";
     const avatarImg = document.getElementById("avatar");
     const usernameEl = document.getElementById("username");
@@ -242,7 +222,6 @@ fileInput.addEventListener('change', (e) => {
     loadProfile();
     setInterval(loadProfile,10000);
 
-    // --- fond animé pluie de lettres multicolores ---
     var cvs = document.getElementById('canvas');
     cvs.height = window.innerHeight;
     cvs.width = window.innerWidth;
