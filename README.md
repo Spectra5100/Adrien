@@ -45,6 +45,22 @@
   <p>appuie pour entrer</p>
     <p style="position:absolute;bottom:20px;font-size:16px;">smite.life - 2025-2026 </p>
 </div>
+<script>
+const enterBtn = document.getElementById('intro') || document.getElementById('enter-btn'); // ton bouton ou div intro
+const audio = document.querySelector('audio'); // ton lecteur audio existant
+
+enterBtn.addEventListener('click', () => {
+    if(audio){
+        audio.play().catch(()=>{}); // démarre la musique
+    }
+    // si c'est l'écran d'intro, on peut le cacher
+    if(enterBtn.id === 'intro'){
+        enterBtn.style.display = 'none';
+    } else if(enterBtn.id === 'enter-btn'){
+        enterBtn.style.display = 'none';
+    }
+});
+</script>
 
 <style>
 @keyframes moveName {
