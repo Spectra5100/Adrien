@@ -63,83 +63,11 @@
 
   <!-- lecteur audio -->
 <div class="player">
-    <div class="song-title" id="song-title">Aucune musique</div>
-    <audio id="audio" src=""></audio>
-    <div class="controls">
-        <button id="prev">&#9664;</button>
-        <button id="play">&#9654;</button>
-        <button id="next">&#9654;&#9654;</button>
-    </div>
-    <input type="range" id="progress" value="0" min="0" max="100">
-</div>
-
-<script>
-const songs = [
-    {title: "Musique 1", src: "musique1.mp3"},
-    {title: "Musique 2", src: "musique2.mp3"},
-    {title: "Musique 3", src: "musique3.mp3"}
-];
-
-let currentSong = 0;
-
-const audio = document.getElementById("audio");
-const playBtn = document.getElementById("play");
-const prevBtn = document.getElementById("prev");
-const nextBtn = document.getElementById("next");
-const songTitle = document.getElementById("song-title");
-const progress = document.getElementById("progress");
-
-function loadSong(index){
-    audio.src = songs[index].src;
-    songTitle.textContent = songs[index].title;
-    audio.load();
-}
-
-function playSong(){
-    audio.play();
-    playBtn.innerHTML = "⏸";
-}
-
-function pauseSong(){
-    audio.pause();
-    playBtn.innerHTML = "▶";
-}
-
-playBtn.addEventListener("click", ()=>{
-    if(audio.paused){
-        playSong();
-    }else{
-        pauseSong();
-    }
-});
-
-prevBtn.addEventListener("click", ()=>{
-    currentSong--;
-    if(currentSong < 0) currentSong = songs.length - 1;
-    loadSong(currentSong);
-    playSong();
-});
-
-nextBtn.addEventListener("click", ()=>{
-    currentSong++;
-    if(currentSong >= songs.length) currentSong = 0;
-    loadSong(currentSong);
-    playSong();
-});
-
-// Progress Bar
-audio.addEventListener("timeupdate", ()=>{
-    const percent = (audio.currentTime / audio.duration) * 100;
-    progress.value = percent || 0;
-});
-
-progress.addEventListener("input", ()=>{
-    audio.currentTime = (progress.value / 100) * audio.duration;
-});
-
-// Charger la première musique
-loadSong(currentSong);
-</script>
+    <audio id="audio" controls autoplay>
+      <source src="Vertigo.mp3" type="audio/mpeg">
+    </audio>
+    <div class="next-track">Prochaine musique : <span id="next"></span></div>
+  </div>
   <!-- compteur + heure/date -->
   <div class="footer-left">Visiteurs : <span id="counter">0</span></div>
   <div class="footer-right" id="datetime"></div>
