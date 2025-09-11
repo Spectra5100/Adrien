@@ -67,6 +67,7 @@
   <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="instagram" onclick="window.open('https://www.instagram.com/spectra_964?igsh=dmt1NG05ZmYxc2M4','_blank')" title="Instagram">
   <img src="https://cdn-icons-png.flaticon.com/512/2111/2111808.png" alt="snapchat" onclick="window.open('https://www.snapchat.com/add/adrien_bayle?share_id=bDwEDKKrba4&locale=fr-FR','_blank')" title="Snapchat">
   <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="telegram" onclick="copyToClipboard('@Xylo1500')" title="Copier Telegram">
+  <img src="https://freepnglogo.com/images/all_img/facebook-circle-logo-png.png" alt="snapchat" onclick="window.open('https://www.facebook.com/share/1A9toTXdL6/','_blank')" title="Snapchat">
 </div>
 
 <div class="center">
