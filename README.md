@@ -69,6 +69,34 @@
     <div class="next-track">Prochaine musique : <span id="next"></span></div>
   </div>
 
+    <!-- Musique -->
+  <audio id="musique" autoplay loop>
+    <source src="media/musique.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Bouton mute/unmute -->
+  <button id="muteBtn">🔊</button>
+
+  <script>
+    const audio = document.getElementById('musique');
+    const btn = document.getElementById('muteBtn');
+
+    // Tentative de lecture automatique (certains navigateurs la bloquent)
+    audio.play().catch(() => {
+      console.log("Autoplay bloqué, l'utilisateur doit interagir.");
+    });
+
+    btn.addEventListener('click', () => {
+      if (audio.muted) {
+        audio.muted = false;
+        btn.textContent = "🔊";
+      } else {
+        audio.muted = true;
+        btn.textContent = "🔇";
+      }
+    });
+  </script>
+
   <!-- compteur + heure/date -->
   <div class="footer-left">Visiteurs : <span id="counter">0</span></div>
   <div class="footer-right" id="datetime"></div>
