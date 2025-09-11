@@ -133,7 +133,10 @@ muteBtn.addEventListener("click", () => {
     function copyToClipboard(text){navigator.clipboard.writeText(text);alert(text + ' copié !');}
 
     // --- compteur visiteurs ---
-   
+    let visits = localStorage.getItem('visits') || 0;
+    visits++;
+    localStorage.setItem('visits', visits);
+    document.getElementById('counter').textContent = visits;
     // --- heure et date ---
     function updateDateTime(){
       const now = new Date();
