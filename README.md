@@ -165,54 +165,61 @@ muteBtn.addEventListener("click",()=>{
 });
 
 // --- profil discord via Lanyard ---
-const discordId="714900482933522447";
-const avatarImg=document.getElementById("avatar");
-const usernameEl=document.getElementById("username");
-const statusEl=document.getElementById("status");
+    const discordId = "714900482933522447";
+    const avatarImg = document.getElementById("avatar");
+    const usernameEl = document.getElementById("username");
+    const statusEl = document.getElementById("status");
 
-async function loadProfile(){
-  try{
-    const res = await fetch(`https://api.lanyard.rest/v1/users/${discordId}`);
-    const data = await res.json();
-    if(data.success){
-      const d = data.data;
-      usernameEl.textContent = d.discord_user.username+"#"+d.discord_user.discriminator;
-      if(d.discord_user.avatar){
-        avatarImg.src = `https://cdn.discordapp.com/avatars/${d.discord_user.id}/${d.discord_user.avatar}.png?size=256`;
-      } else {
-        avatarImg.src = `https://cdn.discordapp.com/embed/avatars/${parseInt(d.discord_user.discriminator)%5}.png`;
+    async function loadProfile(){
+      try {
+        const res = await fetch(`https://api.lanyard.rest/v1/users/${discordId}`);
+        const data = await res.json();
+        if(data.success){
+          const d = data.data;
+          usernameEl.textContent = d.discord_user.username + "#" + d.discord_user.discriminator;
+          if(d.discord_user.avatar){
+            avatarImg.src = `https://cdn.discordapp.com/avatars/${d.discord_user.id}/${d.discord_user.avatar}.png?size=256`;
+          } else {
+            avatarImg.src = `https://cdn.discordapp.com/embed/avatars/${parseInt(d.discord_user.discriminator)%5}.png`;
+          }
+          statusEl.textContent = "status : " + d.discord_status;
+        }
+      } catch(e){
+        statusEl.textContent = "status : erreur";
       }
-      statusEl.textContent = "status : "+d.discord_status;
     }
-  }catch(e){statusEl.textContent="status : erreur";}
-}
-loadProfile();
-setInterval(loadProfile,10000);
+    loadProfile();
+    setInterval(loadProfile,10000);
 
-// --- fond animé pluie lettres ---
-var cvs=document.getElementById('canvas');
-cvs.height=window.innerHeight;
-cvs.width=window.innerWidth;
-var ctx=cvs.getContext('2d');
-var fontSize=14;
-var cols=Math.floor(cvs.width/fontSize);
-var charSet="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".split("");
-var drops=[];
-for(var x=0;x<cols;x++) drops[x]=1;
-function getRandomColor(){const colors=["#ff0055","#00ffea","#fffb00","#ff7b00","#ad00ff","#00ff4c","#ffffff"];return colors[Math.floor(Math.random()*colors.length)];}
-function draw(){
-  ctx.fillStyle="rgba(0,0,0,0.1)";
-  ctx.fillRect(0,0,cvs.width,cvs.height);
-  ctx.font=fontSize+"px monospace";
-  for(var i=0;i<drops.length;i++){
-    var text = charSet[Math.floor(Math.random()*charSet.length)];
-    ctx.fillStyle=getRandomColor();
-    ctx.fillText(text,i*fontSize,drops[i]*fontSize);
-    if(drops[i]*fontSize>cvs.height && Math.random()>0.975) drops[i]=0;
-    drops[i]++;
-  }
-}
-setInterval(draw,33);
-</script>
+    // --- fond animé pluie de lettres multicolores ---
+    var cvs = document.getElementById('canvas');
+    cvs.height = window.innerHeight;
+    cvs.width = window.innerWidth;
+    var ctx = cvs.getContext('2d');
+    var fontSize = 14;
+    var cols = Math.floor(cvs.width / fontSize);
+    var charSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".split("");
+    var drops = [];
+    for (var x = 0; x < cols; x++) drops[x] = 1;
+
+    function getRandomColor(){
+      const colors = ["#ff0055","#00ffea","#fffb00","#ff7b00","#ad00ff","#00ff4c","#ffffff"];
+      return colors[Math.floor(Math.random() * colors.length)];
+    }
+
+    function draw(){
+      ctx.fillStyle = "rgba(0,0,0,0.1)";
+      ctx.fillRect(0,0,cvs.width,cvs.height);
+      ctx.font = fontSize + "px monospace";
+      for (var i = 0; i < drops.length; i++) {
+        var text = charSet[Math.floor(Math.random()*charSet.length)];
+        ctx.fillStyle = getRandomColor();
+        ctx.fillText(text, i*fontSize, drops[i]*fontSize);
+        if(drops[i]*fontSize > cvs.height && Math.random()>0.975) drops[i]=0;
+        drops[i]++;
+      }
+    }
+    setInterval(draw,33);
+  </script>
 </body>
 </html>
