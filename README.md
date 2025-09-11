@@ -77,13 +77,22 @@ intro.addEventListener('click', () => {
   </div>
 
   <!-- profil discord -->
-  <div class="center">
-    <img id="avatar" class="avatar" src="" alt="avatar discord">
-    <div id="username" class="username">Adrien</div>
-    <div id="status" class="status"></div>
-    <div class="subtitle">Ne jamais abandonner.</div>
-  </div>
+ <div class="center" role="region" aria-label="profil">
+    <div class="site-name" aria-hidden="">
+      <!-- animated letters for Adrien -->
+      <span>A</span><span>d</span><span>r</span><span>i</span><span>e</span><span>n</span>
+    </div>
+  <img id="avatar" class="avatar" src="" alt="avatar">
+   <div id="username" class="username">chargement...</div>
+   <div id="status" class="status"> </div>
+  <div class="subtitle">débutant dans le futur du numérique</div>
 
+  <div class="actions">
+  <label for="file-input" class="btn" title="ajouter des musiques">ajouter musique</label>
+   <input id="file-input" type="file" accept="audio/*" multiple="">
+    <button id="copy-discord" class="btn">copier discord</button>
+    </div>
+  </div>
   <!-- lecteur audio -->
 <div class="player">
     <audio id="audio" controls autoplay>
