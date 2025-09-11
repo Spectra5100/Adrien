@@ -19,8 +19,8 @@
     .subtitle {margin-top:10px;font-size:1.1em;color:#ccc;}
 
     /* barre réseaux sociaux */
-    .socials {position:absolute;top:20px;right:20px;display:flex;gap:15px;}
-    .socials img {width:35px;height:35px;cursor:pointer;transition:transform .3s;}
+    .socials {position:absolute;top:50%;right:20px;display:flex;flex-direction:column;gap:15px;transform:translateY(-50%);}
+    .socials img {width:40px;height:40px;cursor:pointer;transition:transform .3s;}
     .socials img:hover {transform:scale(1.2);}
 
     /* lecteur audio */
@@ -47,7 +47,7 @@
 
   <!-- barre réseaux sociaux -->
   <div class="socials">
-    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" alt="discord" onclick="copyToClipboard('https://discord.com/channels/@me/1313645465987973121')" title="Copier Discord">
+    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" alt="discord" onclick="copyToClipboard('king_shadow2')" title="Copier Discord">
     <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="instagram" onclick="window.open('https://www.instagram.com/spectra_964?igsh=dmt1NG05ZmYxc2M4','_blank')" title="Instagram">
     <img src="https://cdn-icons-png.flaticon.com/512/2111/2111808.png" alt="snapchat" onclick="window.open('https://www.snapchat.com/add/adrien_bayle?share_id=bDwEDKKrba4&locale=fr-FR','_blank')" title="Snapchat">
     <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="telegram" onclick="copyToClipboard('@Xylo1500')" title="Copier Telegram">
@@ -58,17 +58,17 @@
     <img id="avatar" class="avatar" src="" alt="avatar discord">
     <div id="username" class="username">Adrien</div>
     <div id="status" class="status"></div>
-    <div class="subtitle">Ne jamais abandonner.</div>
+    <div class="subtitle">débutant dans le futur du numérique</div>
   </div>
 
   <!-- lecteur audio -->
   <div class="player">
     <audio id="audio" controls autoplay>
-      <source src="Vertigo.mp3" type="audio/mpeg">
+      <source src="musique1.mp3" type="audio/mpeg">
     </audio>
     <div class="next-track">Prochaine musique : <span id="next"></span></div>
   </div>
-  
+
   <!-- compteur + heure/date -->
   <div class="footer-left">Visiteurs : <span id="counter">0</span></div>
   <div class="footer-right" id="datetime"></div>
@@ -95,10 +95,17 @@
 
     // --- playlist auto ---
     const audio = document.getElementById('audio');
-    const playlist = ["Vertigo.mp3","LUA.mp3","Tacata.mp3"];
+    const playlist = ["musique1.mp3","musique2.mp3","musique3.mp3"];
     let current = 0;
     const nextSpan = document.getElementById('next');
     nextSpan.textContent = playlist[1] || "-";
+
+    window.addEventListener('load', () => {
+      audio.src = playlist[current];
+      audio.play().catch(() => {
+        console.log("Autoplay bloqué, nécessite une interaction");
+      });
+    });
 
     audio.addEventListener('ended',()=>{
       current=(current+1)%playlist.length;
@@ -167,8 +174,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
