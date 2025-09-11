@@ -69,14 +69,14 @@
     <div class="next-track">Prochaine musique : <span id="next"></span></div>
   </div>
 
-  <!-- Bouton muet flottant -->
+ <!-- Bouton muet flottant -->
 <button id="mute-btn">🔊</button>
 
 <style>
 #mute-btn {
     position: fixed;
-    top: 20px;
-    left: 20px;
+    bottom: 30px;   /* distance par rapport au bas */
+    left: 30px;     /* distance par rapport à gauche */
     background: linear-gradient(135deg, #ff6ec4, #7873f5);
     border: none;
     color: #fff;
@@ -94,16 +94,26 @@
     transform: scale(1.2);
 }
 
-/* Animation qui fait “bouger” le bouton doucement */
+/* Animation flottante */
 @keyframes float {
     0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+    50% { transform: translateY(-8px); }
+}
+
+/* Optionnel : bouton plus petit sur mobile */
+@media (max-width: 768px) {
+    #mute-btn {
+        font-size: 20px;
+        padding: 12px;
+        bottom: 20px;
+        left: 20px;
+    }
 }
 </style>
 
 <script>
 const muteBtn = document.getElementById("mute-btn");
-const audioElements = document.querySelectorAll("audio"); // tous les lecteurs audio
+const audioElements = document.querySelectorAll("audio"); 
 
 let muted = false;
 
@@ -113,6 +123,7 @@ muteBtn.addEventListener("click", () => {
     muteBtn.textContent = muted ? "🔇" : "🔊";
 });
 </script>
+
   <!-- compteur + heure/date -->
   <div class="footer-left">Visiteurs : <span id="counter">0</span></div>
   <div class="footer-right" id="datetime"></div>
@@ -122,11 +133,18 @@ muteBtn.addEventListener("click", () => {
     function copyToClipboard(text){navigator.clipboard.writeText(text);alert(text + ' copié !');}
 
     // --- compteur visiteurs ---
-    let visits = localStorage.getItem('visits') || 0;
-    visits++;
-    localStorage.setItem('visits', visits);
-    document.getElementById('counter').textContent = visits;
+    <div id="counter" style="position:fixed; bottom:10px; left:10px; font-size:18px; color:white; background:rgba(0,0,0,0.4); padding:5px 10px; border-radius:5px;">
+Visiteurs : <span id="visites">0</span>
+</div>
 
+<script>
+// Récupérer le compteur depuis PHP
+fetch('compteur.php')
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById('visites').textContent = data;
+  });
+</script>
     // --- heure et date ---
     function updateDateTime(){
       const now = new Date();
