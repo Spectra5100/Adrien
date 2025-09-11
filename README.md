@@ -67,11 +67,6 @@
     <div class="next-track">Prochaine musique : <span id="next"></span></div>
   </div>
 
-<audio id="musique" controls>
-  <source src="media/Vertigo.mp3" type="audio/mpeg">
-  Votre navigateur ne supporte pas la musique.
-</audio>
-
   <!-- compteur + heure/date -->
   <div class="footer-left">Visiteurs : <span id="counter">0</span></div>
   <div class="footer-right" id="datetime"></div>
