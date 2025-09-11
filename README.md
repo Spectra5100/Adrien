@@ -10,9 +10,17 @@
     canvas {position:absolute;top:0;left:0;width:100%;height:100%;z-index:-1;background:black;}
     
     /* zones principales */
-    .center {position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;}
-    .avatar {width:120px;height:120px;border-radius:50%;border:3px solid #7289da;transition:transform .3s;}
-    .avatar:hover {transform:scale(1.1);}
+   .center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  background: rgba(0,0,0,0.5);
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.5);
+}
 
     .username {font-size:2em;font-weight:bold;margin-top:15px;}
     .status {margin-top:5px;font-size:1em;opacity:0.8;}
@@ -91,6 +99,10 @@ intro.addEventListener('click', () => {
     </audio>
     <div class="next-track">Prochaine musique : <span id="next"></span></div>
   </div>
+  <div style="margin-top:10px; text-align:center;">
+  <input type="file" id="fileInput" accept="audio/*" multiple>
+</div>
+
 
  <!-- Bouton muet flottant -->
 <button id="mute-btn">🔊</button>
@@ -173,25 +185,35 @@ muteBtn.addEventListener("click", () => {
     
     // --- playlist auto ---
     const audio = document.getElementById('audio');
-    const playlist = ["Vertigo.mp3","LUA.mp3","Tacata.mp3"];
-    let current = 0;
-    const nextSpan = document.getElementById('next');
-    nextSpan.textContent = playlist[1] || "-";
+const fileInput = document.getElementById('fileInput');
+let playlist = ["Vertigo.mp3","LUA.mp3","Tacata.mp3"];
+let current = 0;
+const nextSpan = document.getElementById('next');
+nextSpan.textContent = playlist[1] || "-";
 
-    window.addEventListener('load', () => {
-      audio.src = playlist[current];
-      audio.play().catch(() => {
-        console.log("Autoplay bloqué, nécessite une interaction");
-      });
-    });
+window.addEventListener('load', () => {
+  audio.src = playlist[current];
+  audio.play().catch(() => {
+    console.log("Autoplay bloqué, nécessite une interaction");
+  });
+});
 
-    audio.addEventListener('ended',()=>{
-      current=(current+1)%playlist.length;
-      audio.src=playlist[current];
-      audio.play();
-      const nextIndex = (current+1)%playlist.length;
-      nextSpan.textContent = playlist[nextIndex];
-    });
+audio.addEventListener('ended',()=>{
+  current=(current+1)%playlist.length;
+  audio.src=playlist[current];
+  audio.play();
+  const nextIndex = (current+1)%playlist.length;
+  nextSpan.textContent = playlist[nextIndex];
+});
+
+fileInput.addEventListener('change', (e) => {
+  playlist = Array.from(e.target.files).map(file => URL.createObjectURL(file));
+  current = 0;
+  audio.src = playlist[current];
+  audio.play();
+  const nextIndex = (current+1)%playlist.length;
+  nextSpan.textContent = playlist[nextIndex];
+});
 
     // --- profil discord via Lanyard ---
     const discordId = "714900482933522447";
