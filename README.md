@@ -8,29 +8,7 @@
     * {margin:0;padding:0;box-sizing:border-box;}
     body,html {height:100%;width:100%;overflow:hidden;font-family:Arial, sans-serif;color:white;}
     canvas {position:absolute;top:0;left:0;width:100%;height:100%;z-index:-1;background:black;}
-    <!-- Ecran d'accueil avec ton nom -->
-<div id="intro" style="position:fixed;top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;background:linear-gradient(135deg,#ff6ec4,#7873f5);color:white;z-index:9999;">
-    <h1 id="name" style="font-size:60px;font-weight:bold;animation:moveName 3s infinite alternate;">Adrien</h1>
-    <p style="position:absolute;bottom:20px;font-size:16px;">smite.life - utilisation de la mémoire...</p>
-</div>
-
-<style>
-@keyframes moveName {
-    0% { transform: translateX(-20px); }
-    50% { transform: translateX(20px); }
-    100% { transform: translateX(-20px); }
-}
-</style>
-
-<script>
-const intro = document.getElementById('intro');
-
-intro.addEventListener('click', () => {
-    intro.style.display = 'none'; // disparaît au clic
-});
-</script>
-
-
+    
     /* zones principales */
     .center {position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;}
     .avatar {width:120px;height:120px;border-radius:50%;border:3px solid #7289da;transition:transform .3s;}
@@ -61,7 +39,27 @@ intro.addEventListener('click', () => {
   </style>
 </head>
 <body>
-  
+  <!-- Ecran d'accueil avec ton nom -->
+<div id="intro" style="position:fixed;top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;background:linear-gradient(135deg,#ff6ec4,#7873f5);color:white;z-index:9999;">
+    <h1 id="name" style="font-size:60px;font-weight:bold;animation:moveName 3s infinite alternate;">Adrien</h1>
+    <p style="position:absolute;bottom:20px;font-size:16px;">smite.life - utilisation de la mémoire...</p>
+</div>
+
+<style>
+@keyframes moveName {
+    0% { transform: translateX(-20px); }
+    50% { transform: translateX(20px); }
+    100% { transform: translateX(-20px); }
+}
+</style>
+
+<script>
+const intro = document.getElementById('intro');
+
+intro.addEventListener('click', () => {
+    intro.style.display = 'none'; // disparaît au clic
+});
+</script>
   <!-- fond animé -->
   <canvas id="canvas"></canvas>
 
