@@ -155,16 +155,108 @@ audio.addEventListener('ended', ()=>{
   nextSpan.textContent = playlist[(current+1)%playlist.length];
 });
 
-// --- bouton muet ---
-const muteBtn = document.getElementById("mute-btn");
-let muted = false;
-muteBtn.addEventListener("click",()=>{
-  muted = !muted;
-  audio.muted = muted;
-  muteBtn.textContent = muted ? "🔇":"🔊";
-});
+ <!-- Bouton muet flottant -->
+<button id="mute-btn">🔊</button>
 
-// --- profil discord via Lanyard ---
+<style>
+#mute-btn {
+    position: fixed;
+    bottom: 30px;   /* distance par rapport au bas */
+    left: 30px;     /* distance par rapport à gauche */
+    background: linear-gradient(135deg, #ff6ec4, #7873f5);
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    padding: 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    animation: float 2s ease-in-out infinite;
+    z-index: 9999;
+    transition: transform 0.2s;
+}
+
+#mute-btn:hover {
+    transform: scale(1.2);
+}
+
+/* Animation flottante */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+/* Optionnel : bouton plus petit sur mobile */
+@media (max-width: 768px) {
+    #mute-btn {
+        font-size: 20px;
+        padding: 12px;
+        bottom: 20px;
+        left: 20px;
+    }
+}
+</style>
+
+<script>
+const muteBtn = document.getElementById("mute-btn");
+const audioElements = document.querySelectorAll("audio"); 
+
+let muted = false;
+
+muteBtn.addEventListener("click", () => {
+    muted = !muted;
+    audioElements.forEach(audio => audio.muted = muted);
+    muteBtn.textContent = muted ? "🔇" : "🔊";
+});
+</script>
+
+  <!-- compteur + heure/date -->
+  <div class="footer-left">Visiteurs : <span id="counter">0</span></div>
+  <div class="footer-right" id="datetime"></div>
+
+  <script>
+    // --- copier pseudo ---
+    function copyToClipboard(text){navigator.clipboard.writeText(text);alert(text + ' copié !');}
+
+    // --- compteur visiteurs ---
+    let visits = localStorage.getItem('visits') || 0;
+    visits++;
+    localStorage.setItem('visits', visits);
+    document.getElementById('counter').textContent = visits;
+    // --- heure et date ---
+    function updateDateTime(){
+      const now = new Date();
+      const options = {hour:'2-digit',minute:'2-digit',second:'2-digit'};
+      const time = now.toLocaleTimeString('fr-FR', options);
+      const date = now.toLocaleDateString('fr-FR');
+      document.getElementById('datetime').textContent = date + ' ' + time;
+    }
+    setInterval(updateDateTime,1000);updateDateTime();
+
+    
+    // --- playlist auto ---
+    const audio = document.getElementById('audio');
+    const playlist = ["Vertigo.mp3","LUA.mp3","Tacata.mp3"];
+    let current = 0;
+    const nextSpan = document.getElementById('next');
+    nextSpan.textContent = playlist[1] || "-";
+
+    window.addEventListener('load', () => {
+      audio.src = playlist[current];
+      audio.play().catch(() => {
+        console.log("Autoplay bloqué, nécessite une interaction");
+      });
+    });
+
+    audio.addEventListener('ended',()=>{
+      current=(current+1)%playlist.length;
+      audio.src=playlist[current];
+      audio.play();
+      const nextIndex = (current+1)%playlist.length;
+      nextSpan.textContent = playlist[nextIndex];
+    });
+
+    // --- profil discord via Lanyard ---
     const discordId = "714900482933522447";
     const avatarImg = document.getElementById("avatar");
     const usernameEl = document.getElementById("username");
