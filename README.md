@@ -53,6 +53,22 @@
     100% { transform: translateX(-20px); }
 }
 </style>
+<!-- Bouton pour ajouter une musique -->
+<input type="file" id="add-music" accept="audio/*" style="position:fixed;bottom:80px;left:20px;z-index:9999;cursor:pointer;">
+
+<script>
+const audio = document.getElementById('audio'); // ton lecteur existant
+const addMusicInput = document.getElementById('add-music');
+
+addMusicInput.addEventListener('change', (event) => {
+    const file = event.target.files[0];
+    if(file){
+        const fileURL = URL.createObjectURL(file); // crée une URL locale pour le fichier
+        audio.src = fileURL; // change la source du lecteur
+        audio.play().catch(()=>{}); // joue la musique
+    }
+});
+</script>
 
 <script>
 const intro = document.getElementById('intro');
