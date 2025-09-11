@@ -9,7 +9,7 @@
     canvas {position:absolute;top:0;left:0;width:100%;height:100%;z-index:-1;background:black;}
 
     /* Profil centré */
-    .center {position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;background:rgba(0,0,0,0.5);padding:20px;border-radius:15px;box-shadow:0 0 25px rgba(255,0,200,0.7), 0 0 40px rgba(0,200,255,0.5);}
+    .center {position:absolute;top:40%;left:50%;transform:translate(-50%,-50%);text-align:center;background:rgba(0,0,0,0.5);padding:20px;border-radius:15px;box-shadow:0 0 25px rgba(255,0,200,0.7), 0 0 40px rgba(0,200,255,0.5);}
     .avatar {width:120px;height:120px;border-radius:50%;border:3px solid #7289da;transition:transform .3s;box-shadow:0 0 20px #7289da;}
     .avatar:hover {transform:scale(1.1);}
 
@@ -31,7 +31,7 @@
     }
 
     /* lecteur audio */
-    .player {position:absolute;bottom:100px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.7);padding:15px 25px;border-radius:15px;box-shadow:0 0 25px rgba(255,0,200,0.6), 0 0 40px rgba(0,200,255,0.4);text-align:center;}
+    .player {position:absolute;bottom:40px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.7);padding:15px 25px;border-radius:15px;box-shadow:0 0 25px rgba(255,0,200,0.6), 0 0 40px rgba(0,200,255,0.4);text-align:center;}
     .next-track {margin-top:5px;font-size:0.9em;color:#aaa;}
 
     .controls {margin-top:10px;display:flex;justify-content:center;gap:15px;}
