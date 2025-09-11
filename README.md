@@ -39,6 +39,42 @@
   </style>
 </head>
 <body>
+  <!-- PROFIL ENCADRÉ AVEC BOUTON AJOUT MUSIQUE -->
+<div class="center" style="display:flex;align-items:center;gap:20px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.2);backdrop-filter:blur(6px);padding:20px 30px;border-radius:16px;flex-wrap:wrap;">
+
+  <!-- Bouton ajouter musique -->
+  <label for="file-input" class="btn" style="flex-shrink:0;background:rgba(114,137,218,0.2);border:1px solid rgba(255,255,255,0.08);padding:12px 16px;border-radius:12px;cursor:pointer;font-weight:bold;text-align:center;">
+    🎵 Ajouter musique
+  </label>
+  <input id="file-input" type="file" accept="audio/*" multiple style="display:none">
+
+  <!-- Avatar + infos -->
+  <div style="text-align:center;">
+    <img id="avatar" class="avatar" src="https://cdn.discordapp.com/embed/avatars/0.png" alt="avatar" style="width:120px;height:120px;border-radius:50%;border:3px solid #7289da;transition:transform .3s;">
+    <div id="username" class="username" style="font-size:2em;font-weight:bold;margin-top:15px;">Adrien</div>
+    <div id="status" class="status" style="margin-top:5px;font-size:1em;opacity:0.8;">status : en ligne</div>
+    <div class="subtitle" style="margin-top:10px;font-size:1.1em;color:#ccc;">Ne jamais abandonner.</div>
+  </div>
+
+</div>
+
+<script>
+// Ajouter musique au lecteur
+const fileInput = document.getElementById('file-input');
+const audio = document.createElement('audio'); // tu peux mettre ton lecteur existant à la place
+audio.controls = true;
+document.body.appendChild(audio);
+
+fileInput.addEventListener('change', (e) => {
+  const file = e.target.files[0];
+  if(file){
+    const url = URL.createObjectURL(file);
+    audio.src = url;
+    audio.play();
+  }
+});
+</script>
+
  <!-- Ecran d'accueil avec ton nom -->
 <div id="intro" style="position:fixed;top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;background:linear-gradient(135deg,#ff6ec4,#7873f5);color:white;z-index:9999;">
     <h1 id="name" style="font-size:60px;font-weight:bold;animation:moveName 3s infinite alternate;">Adrien</h1>
