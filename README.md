@@ -42,7 +42,8 @@
   <!-- Ecran d'accueil avec ton nom -->
 <div id="intro" style="position:fixed;top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;background:linear-gradient(135deg,#ff6ec4,#7873f5);color:white;z-index:9999;">
     <h1 id="name" style="font-size:60px;font-weight:bold;animation:moveName 3s infinite alternate;">Adrien</h1>
-    <p style="position:absolute;bottom:20px;font-size:16px;">smite.life - utilisation de la mémoire...</p>
+  <p>appuie pour entrer</p>
+    <p style="position:absolute;bottom:20px;font-size:16px;">smite.life - 2025-2026 </p>
 </div>
 
 <style>
