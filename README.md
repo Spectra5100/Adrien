@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -56,7 +56,7 @@ canvas {position:absolute;top:0;left:0;width:100%;height:100%;z-index:-1;backgro
 <!-- écran d'accueil -->
 <div id="intro">
   <h1>Adrien</h1>
-  <p>smite.life -2025-2026</p>
+  <p>smite.life 2025-2026</p>
   <p>appuie pour entrer</p>
 </div>
 
@@ -79,9 +79,8 @@ canvas {position:absolute;top:0;left:0;width:100%;height:100%;z-index:-1;backgro
   <label for="file-input" class="btn">🎵 Ajouter musique</label>
   <input id="file-input" type="file" accept="audio/*" multiple style="display:none">
   <div>
-    <h1 id="name">Adrien</h1>
     <img id="avatar" class="avatar" src="" alt="avatar discord">
-    <div id="username" class="username">Adrien</div>
+    <div id="username" class="username">king_shadow2</div>
     <div id="status" class="status"></div>
     <div class="subtitle">Ne jamais abandonner.</div>
   </div>
