@@ -53,22 +53,6 @@
     100% { transform: translateX(-20px); }
 }
 </style>
-<!-- Bouton pour ajouter une musique -->
-<input type="file" id="add-music" accept="audio/*" style="position:fixed;bottom:80px;left:20px;z-index:9999;cursor:pointer;">
-
-<script>
-const audio = document.getElementById('audio'); // ton lecteur existant
-const addMusicInput = document.getElementById('add-music');
-
-addMusicInput.addEventListener('change', (event) => {
-    const file = event.target.files[0];
-    if(file){
-        const fileURL = URL.createObjectURL(file); // crée une URL locale pour le fichier
-        audio.src = fileURL; // change la source du lecteur
-        audio.play().catch(()=>{}); // joue la musique
-    }
-});
-</script>
 
 <script>
 const intro = document.getElementById('intro');
@@ -185,7 +169,63 @@ muteBtn.addEventListener("click", () => {
       document.getElementById('datetime').textContent = date + ' ' + time;
     }
     setInterval(updateDateTime,1000);updateDateTime();
+    
+// audio playlist with upload, autoplay, loop -> next track
+// ---------------------
+const fileInput = document.getElementById('file-input');
+const playlistEl = document.getElementById('playlist');
+const audio = document.getElementById('audio');
+let tracks = [];
+let current = 0;
 
+
+function renderPlaylist(){
+playlistEl.innerHTML='';
+tracks.forEach((t,i)=>{
+const div = document.createElement('div');
+div.className = 'track' + (i===current ? ' playing' : '');
+div.innerHTML = `<span>${t.name}</span><button class='btn' data-i='${i}'>jouer</button>`;
+playlistEl.appendChild(div);
+});
+// attach play buttons
+playlistEl.querySelectorAll('button').forEach(btn=>btn.addEventListener('click',e=>{
+const idx = Number(e.currentTarget.dataset.i);
+playIndex(idx);
+}));
+}
+
+
+function playIndex(i){
+if(tracks.length===0) return;
+current = i%tracks.length;
+audio.src = tracks[current].url;
+audio.play().catch(()=>{/* autoplay blocked: user must interact */});
+renderPlaylist();
+}
+
+
+fileInput.addEventListener('change',(e)=>{
+const files = Array.from(e.target.files);
+files.forEach(f=>{
+const url = URL.createObjectURL(f);
+tracks.push({name:f.name,url});
+});
+if(tracks.length && !audio.src) playIndex(0);
+renderPlaylist();
+});
+
+
+audio.addEventListener('ended',()=>{
+if(tracks.length===0) return;
+current = (current+1)%tracks.length;
+playIndex(current);
+});
+
+
+// try autoplay on load (may be blocked by browser)
+window.addEventListener('load',()=>{
+setTimeout(()=>{ if(tracks.length>0){ audio.play().catch(()=>{/* blocked */}) } },800);
+});
     // --- playlist auto ---
     const audio = document.getElementById('audio');
     const playlist = ["Vertigo.mp3","LUA.mp3","Tacata.mp3"];
