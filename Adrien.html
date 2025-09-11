@@ -62,13 +62,16 @@
   </div>
 
   <!-- lecteur audio -->
-  <div class="player">
-    <audio id="audio" controls autoplay>
-      <source src="Vertigo.mp3" type="audio/mpeg">
-    </audio>
-    <div class="next-track">Prochaine musique : <span id="next"></span></div>
-  </div>
-
+  
+  <script>
+document.addEventListener('click', () => {
+    const audio = document.getElementById('musique');
+    // Essaie de jouer la musique
+    audio.play().catch(() => {
+        console.log("Lecture bloquée, l'utilisateur doit cliquer à nouveau");
+    });
+}, { once: true }); // Se déclenche au premier clic seulement
+</script>
   <!-- compteur + heure/date -->
   <div class="footer-left">Visiteurs : <span id="counter">0</span></div>
   <div class="footer-right" id="datetime"></div>
@@ -167,5 +170,6 @@
   </script>
 </body>
 </html>
+
 
 
