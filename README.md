@@ -39,10 +39,8 @@
   </style>
 </head>
 <body>
-  <!-- Bouton d'entrée -->
-<div id="enter-screen" style="position:fixed;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,#ff6ec4,#7873f5);display:flex;justify-content:center;align-items:center;z-index:9999;">
-    <button id="enter-btn" style="padding:15px 30px;font-size:20px;border:none;border-radius:30px;background:white;color:#7873f5;cursor:pointer;box-shadow:0 8px 20px rgba(0,0,0,0.3);animation:pulse 2s infinite;">Appuie ici pour entrer</button>
-</div>
+<!-- Bouton d'entrée discret -->
+<button id="enter-btn" style="position:fixed;top:30%;left:50%;transform:translate(-50%,-50%);padding:15px 30px;font-size:20px;border:none;border-radius:30px;background:white;color:#7873f5;cursor:pointer;box-shadow:0 8px 20px rgba(0,0,0,0.3);animation:pulse 2s infinite;z-index:9999;">Clique pour entrer</button>
 
 <style>
 @keyframes pulse {
@@ -53,16 +51,16 @@
 
 <script>
 const enterBtn = document.getElementById('enter-btn');
-const enterScreen = document.getElementById('enter-screen');
-const audio = document.querySelector('audio'); // ton lecteur audio déjà existant
+const audio = document.querySelector('audio'); // prend ton audio existant
 
 enterBtn.addEventListener('click', () => {
-    enterScreen.style.display = 'none'; // cache le bouton
+    enterBtn.style.display = 'none'; // cache le bouton
     if(audio){
         audio.play().catch(()=>{}); // lance la musique
     }
 });
 </script>
+
   <!-- fond animé -->
   <canvas id="canvas"></canvas>
 
