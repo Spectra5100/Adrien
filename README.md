@@ -133,17 +133,7 @@ muteBtn.addEventListener("click", () => {
     function copyToClipboard(text){navigator.clipboard.writeText(text);alert(text + ' copié !');}
 
     // --- compteur visiteurs ---
-    <div id="counter" style="position:fixed; bottom:10px; left:10px; font-size:18px; color:white; background:rgba(0,0,0,0.4); padding:5px 10px; border-radius:5px;">
-Visiteurs : <span id="visites">0</span>
-</div>
-
-<script>
-// Récupérer le compteur depuis PHP
-fetch('compteur.php')
-  .then(response => response.text())
-  .then(data => {
-    document.getElementById('visites').textContent = data;
-  });
+   
     // --- heure et date ---
     function updateDateTime(){
       const now = new Date();
