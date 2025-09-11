@@ -1,9 +1,7 @@
-<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Adrien</title>
   <style>
     * {margin:0;padding:0;box-sizing:border-box;}
     body,html {height:100%;width:100%;overflow:hidden;font-family:Arial, sans-serif;color:white;}
