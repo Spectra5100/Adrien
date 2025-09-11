@@ -68,6 +68,51 @@
     </audio>
     <div class="next-track">Prochaine musique : <span id="next"></span></div>
   </div>
+
+  <!-- Bouton muet flottant -->
+<button id="mute-btn">🔊</button>
+
+<style>
+#mute-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: linear-gradient(135deg, #ff6ec4, #7873f5);
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    padding: 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    animation: float 2s ease-in-out infinite;
+    z-index: 9999;
+    transition: transform 0.2s;
+}
+
+#mute-btn:hover {
+    transform: scale(1.2);
+}
+
+/* Animation qui fait “bouger” le bouton doucement */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+</style>
+
+<script>
+const muteBtn = document.getElementById("mute-btn");
+const audioElements = document.querySelectorAll("audio"); // tous les lecteurs audio
+
+let muted = false;
+
+muteBtn.addEventListener("click", () => {
+    muted = !muted;
+    audioElements.forEach(audio => audio.muted = muted);
+    muteBtn.textContent = muted ? "🔇" : "🔊";
+});
+</script>
   <!-- compteur + heure/date -->
   <div class="footer-left">Visiteurs : <span id="counter">0</span></div>
   <div class="footer-right" id="datetime"></div>
@@ -94,7 +139,7 @@
 
     // --- playlist auto ---
     const audio = document.getElementById('audio');
-    const playlist = ["musique1.mp3","musique2.mp3","musique3.mp3"];
+    const playlist = ["Vertigo.mp3","LUA.mp3","Tacata.mp3"];
     let current = 0;
     const nextSpan = document.getElementById('next');
     nextSpan.textContent = playlist[1] || "-";
