@@ -39,28 +39,14 @@
   </style>
 </head>
 <body>
-  <!-- Ecran d'accueil avec ton nom -->
-<div id="intro" style="position:fixed;top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;background:linear-gradient(135deg,#ff6ec4,#7873f5);color:white;z-index:9999;">
+  
+ <!-- Intro stylée -->
+<div id="intro" style="position:fixed;top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;background:linear-gradient(135deg,#ff6ec4,#7873f5);color:white;z-index:9999;cursor:pointer;">
     <h1 id="name" style="font-size:60px;font-weight:bold;animation:moveName 3s infinite alternate;">Adrien</h1>
-  <p>appuie pour entrer</p>
-    <p style="position:absolute;bottom:20px;font-size:16px;">smite.life - 2025-2026 </p>
+    <p style="position:absolute;bottom:20px;font-size:16px;">smite.life - utilisation de la mémoire...</p>
 </div>
-<script>
-const enterBtn = document.getElementById('intro') || document.getElementById('enter-btn'); // ton bouton ou div intro
-const audio = document.querySelector('audio'); // ton lecteur audio existant
 
-enterBtn.addEventListener('click', () => {
-    if(audio){
-        audio.play().catch(()=>{}); // démarre la musique
-    }
-    // si c'est l'écran d'intro, on peut le cacher
-    if(enterBtn.id === 'intro'){
-        enterBtn.style.display = 'none';
-    } else if(enterBtn.id === 'enter-btn'){
-        enterBtn.style.display = 'none';
-    }
-});
-</script>
+<audio id="audio" src="musique1.mp3"></audio>
 
 <style>
 @keyframes moveName {
@@ -72,11 +58,16 @@ enterBtn.addEventListener('click', () => {
 
 <script>
 const intro = document.getElementById('intro');
+const audio = document.getElementById('audio');
 
 intro.addEventListener('click', () => {
-    intro.style.display = 'none'; // disparaît au clic
+    intro.style.display = 'none'; // masque l'intro
+    if(audio){
+        audio.play().catch(()=>{}); // lance la musique
+    }
 });
 </script>
+
   <!-- fond animé -->
   <canvas id="canvas"></canvas>
 
