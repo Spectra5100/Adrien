@@ -1,9 +1,11 @@
 <html lang="fr">
 <head>
-  <link rel="icon" type="adrien/png" href="adrien.png">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Adrien</title>
+  <link rel="icon" type="adrien/png" href="adrien.png">
+  </head>
+  
   <style>
     * {margin:0;padding:0;box-sizing:border-box;}
     body,html {height:100%;width:100%;overflow:hidden;font-family:Arial, sans-serif;color:white;}
@@ -53,7 +55,7 @@
 <body>
 <div id="intro" style="position:fixed;top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;background:linear-gradient(135deg,#ff6ec4,#7873f5);color:white;z-index:9999;">
     <h1 id="name" style="font-size:60px;font-weight:bold;animation:moveName 3s infinite alternate;text-shadow:0 0 15px #ff00ff, 0 0 30px #00ffff;">Adrien</h1>
-    <p style="position:absolute;bottom:20px;font-size:16px;">smite.life -2025-2026</p>
+    <p style="position:absolute;bottom:20px;font-size:16px;">smite.life 2025-2026</p>
   <p>appuie pour entrer</p>
 </div>
 
