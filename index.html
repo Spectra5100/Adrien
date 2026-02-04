@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adrien - Portfolio</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Fond animé Matrix -->
+  <canvas id="canvas"></canvas>
+
+  <!-- Message de bienvenue -->
+  <div class="welcome">Bienvenue</div>
+
+  <!-- Barre réseaux sociaux -->
+  <div class="socials">
+    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" 
+         alt="Discord" 
+         onclick="copyToClipboard('king_shadow2')" 
+         title="Copier Discord">
+    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" 
+         alt="Instagram" 
+         onclick="window.open('https://www.instagram.com/spectra_964?igsh=dmt1NG05ZmYxc2M4','_blank')" 
+         title="Instagram">
+    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111808.png" 
+         alt="Snapchat" 
+         onclick="window.open('https://www.snapchat.com/add/adrien_bayle?share_id=bDwEDKKrba4&locale=fr-FR','_blank')" 
+         title="Snapchat">
+    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" 
+         alt="Telegram" 
+         onclick="copyToClipboard('@Xylo1500')" 
+         title="Copier Telegram">
+  </div>
+
+  <!-- Profil Discord -->
+  <div class="center">
+    <img id="avatar" class="avatar" src="" alt="Avatar Discord">
+    <div id="username" class="username">Adrien</div>
+    <div id="status" class="status"></div>
+    <div class="subtitle">Ne jamais abandonner.</div>
+  </div>
+
+  <!-- Lecteur audio -->
+  <div class="player">
+    <audio id="audio" controls autoplay>
+      <source src="assets/music/LUA.mp3" type="audio/mpeg">
+    </audio>
+    <div class="next-track">Prochaine musique : <span id="next"></span></div>
+  </div>
+
+  <!-- Compteur + heure/date -->
+  <div class="footer-left">Visiteurs : <span id="counter">0</span></div>
+  <div class="footer-right" id="datetime"></div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

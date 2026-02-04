@@ -1,0 +1,21 @@
+# Fichiers système
+.DS_Store
+Thumbs.db
+
+# Fichiers IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Fichiers temporaires
+*.tmp
+*.bak
+*.log
+
+# Node modules (si vous ajoutez npm plus tard)
+node_modules/
+
+# Fichiers de configuration locale
+.env
+.env.local
