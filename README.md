@@ -115,3 +115,10 @@ Les contributions sont les bienvenues ! N'hésitez pas à ouvrir une issue ou un
 **Créé avec ❤️ par Adrien**
 
 *"Ne jamais abandonner."*
+
+
+## 🔒 Politique de confidentialité
+
+Le lien de pied de page pointe vers `/privacy/`. Le fichier `privacy/index.html` permet à GitHub Pages de servir cette route (avec une éventuelle redirection canonique de `/privacy` vers `/privacy/`). Le style est dans `css/privacy.css`.
+
+**À vérifier avant publication :** compléter les coordonnées de contact si nécessaire et vérifier que les mentions sur les services externes et le traitement des données correspondent à l'usage réel du site.

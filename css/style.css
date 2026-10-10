@@ -170,3 +170,23 @@ canvas {
     font-size: 1.5em;
   }
 }
+
+/* Lien vers la politique de confidentialité */
+.privacy-link {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #d0d0d0;
+  font-size: .85rem;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  white-space: nowrap;
+}
+.privacy-link:hover, .privacy-link:focus-visible { color: white; }
+@media (max-width: 768px) {
+  .privacy-link { bottom: 36px; font-size: .75rem; }
+  .footer-left, .footer-right { font-size: .72rem; }
+  .footer-left { left: 8px; }
+  .footer-right { right: 8px; }
+}
